@@ -1,0 +1,13 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPattern": "/api/test/[0-9]{8}"
+  },
+  "response": {
+    "status": 200,
+    "body": "{\"cep\":\"00000-000\",\"logradouro\":\"Rua Teste\",\"complemento\":\"Complemento Teste\",\"unidade\":\"Unidade Teste\",\"bairro\":\"bairro Teste\",\"localidade\":\"Cidade Teste\",\"uf\":\"UF Teste\",\"estado\":\"Estado Teste\",\"regiao\":\"Regiao Teste\",\"ddd\":\"00\"}",
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

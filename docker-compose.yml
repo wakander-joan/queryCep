@@ -28,6 +28,7 @@ services:
       - "8080:8080"
     volumes:
       - ./stubs:/home/wiremock
+      - ./wiremock/mappings:/home/wiremock/mappings
 
   postgres:
     image: postgres:latest
