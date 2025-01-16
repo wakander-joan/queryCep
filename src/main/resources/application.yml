@@ -31,3 +31,15 @@ spring:
       properties:
         hibernate:
           default_schema: querycep
+
+cloud:
+  aws:
+    credentials:
+      accessKey: ${AWS_SQS_ACCESS_KEY:teste}
+      secretKey: ${AWS_SQS_SECRET_KEY:teste}
+    stack: false
+    stack.auto: false
+    region:
+      auto: false
+      static: ${AWS_SQS_REGION:us-east-1}
+      use-default-aws-region-chain: true
