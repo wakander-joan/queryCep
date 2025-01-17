@@ -1,0 +1,34 @@
+{
+	"info": {
+		"_postman_id": "89fa08d5-8bc1-4bcc-8073-c028a93f6a21",
+		"name": "Querycep",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21909894",
+		"_collection_link": "https://restless-spaceship-392448.postman.co/workspace/Team-Workspace~dadaf4f4-86ec-4da2-880d-0e390b7c2af0/collection/21909894-89fa08d5-8bc1-4bcc-8073-c028a93f6a21?action=share&source=collection_link&creator=21909894"
+	},
+	"item": [
+		{
+			"name": "GetCep",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8089/querycep/api/cep/buscaCep/45826806",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8089",
+					"path": [
+						"querycep",
+						"api",
+						"cep",
+						"buscaCep",
+						"45826806"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
