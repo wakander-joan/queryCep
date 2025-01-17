@@ -31,3 +31,18 @@ spring:
       properties:
         hibernate:
           default_schema: querycep
+
+cloud:
+  aws:
+    region:
+      static: us-east-1
+    credentials:
+      access-key: test
+      secret-key: test
+    stack-name: localstack
+    sqs:
+      listener:
+        enabled: true
+        max-messages: 10
+        visibility-timeout: 30
+        wait-time-seconds: 20

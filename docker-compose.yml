@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   localstack:
     container_name: "${LOCALSTACK_DOCKER_NAME-localstack_querycep}"
@@ -13,6 +11,7 @@ services:
     environment:
       # LocalStack configuration: https://docs.localstack.cloud/references/configura
       - DEBUG=${DEBUG-}
+      - LAMBDA_RUNTIME_ENVIRONMENT_TIMEOUT=60
       - PERSISTENCE=${PERSISTENCE-}
       - LAMBDA_EXECUTOR=${LAMBDA_EXECUTOR-}
       - LOCALSTACK_API_KEY=${LOCALSTACK_API_KEY-}  # only required for Pro
@@ -20,6 +19,14 @@ services:
     volumes:
       - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
       - "/var/run/docker.sock:/var/run/docker.sock"
+      - "./init-sqs.sh:/etc/localstack/init-sqs.sh"
+    deploy:
+      resources:
+        limits:
+          memory: 2g
+          cpus: "1.0"
+        reservations:
+          memory: 1g
 
   wiremock:
     image: wiremock/wiremock:latest
@@ -28,6 +35,7 @@ services:
       - "8080:8080"
     volumes:
       - ./stubs:/home/wiremock
+      - ./wiremock/mappings:/home/wiremock/mappings
 
   postgres:
     image: postgres:latest
