@@ -11,8 +11,8 @@ import java.util.UUID;
 @Getter
 @Setter
 @ToString
-@AllArgsConstructor
-@NoArgsConstructor
+@AllArgsConstructor (access = AccessLevel.PACKAGE)
+@NoArgsConstructor (access = AccessLevel.PUBLIC)
 public class LogConsultaCep {
 
     @Id

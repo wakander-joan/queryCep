@@ -34,12 +34,15 @@ spring:
 
 cloud:
   aws:
-    credentials:
-      accessKey: ${AWS_SQS_ACCESS_KEY:teste}
-      secretKey: ${AWS_SQS_SECRET_KEY:teste}
-    stack: false
-    stack.auto: false
     region:
-      auto: false
-      static: ${AWS_SQS_REGION:us-east-1}
-      use-default-aws-region-chain: true
+      static: us-east-1
+    credentials:
+      access-key: test
+      secret-key: test
+    stack-name: localstack
+    sqs:
+      listener:
+        enabled: true
+        max-messages: 10
+        visibility-timeout: 30
+        wait-time-seconds: 20

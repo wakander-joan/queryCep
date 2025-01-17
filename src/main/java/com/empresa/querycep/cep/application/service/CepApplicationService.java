@@ -1,7 +1,7 @@
 package com.empresa.querycep.cep.application.service;
 
 import com.empresa.querycep.cep.application.dto.CepDetalhadoResponse;
-import com.empresa.querycep.cep.domain.LogConsultaCep;
+import com.empresa.querycep.cep.domain.LocalLogConsultaCep;
 import com.empresa.querycep.cep.infra.CepRepository;
 import com.empresa.querycep.cep.infra.ConsultaCepResponse;
 import com.empresa.querycep.cep.infra.WiremockClientFeign;
@@ -24,13 +24,18 @@ public class CepApplicationService implements CepService {
     public CepDetalhadoResponse buscaCep(String cep) {
         log.debug("[start] CepApplicationService - buscaCep");
         ConsultaCepResponse cepResponse = wiremockClientFeign.consultaCep(cep);
+        log.debug("[finish] wiremockClientFeign.consultaCep(cep) - buscaCep");
+        LocalLogConsultaCep logCriado = new LocalLogConsultaCep(cepResponse);
+        cepRepository.save(logCriado);
+        log.debug("[finish] CepApplicationService - buscaCep");
+
+        /* <-- Manda para a fila SQS
         String currentDateTime = LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
         String logMessage = String.format(
                 "{\"cep\":\"%s\", \"dataHora\":\"%s\", \"statusEnvio\":true}", cep, currentDateTime );
         sqsProducerService.sendLogToSqs(logMessage);
-        log.debug("[finish] CepApplicationService - buscaCep");
-        LogConsultaCep log = new LogConsultaCep(cepResponse);
-        cepRepository.save(log);
+        */
+
         return new CepDetalhadoResponse(cepResponse);
     }
 }
